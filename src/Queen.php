@@ -1,14 +1,25 @@
 <?php
-    Class Queen
+    class Piece
     {
-        private $xCoord;
-        private $yCoord;
+        public $xCoord;
+        public $yCoord;
 
         function __construct($xCoord,$yCoord) {
             $this->xCoord = $xCoord;
             $this->yCoord = $yCoord;
         }
 
+        function slope($targetXCoord, $targetYCoord) {
+            $xSlope = $this->xCoord - $targetXCoord;
+            $ySlope = $this->yCoord - $targetYCoord;
+            $slope = abs($xSlope/$ySlope);
+            return $slope;
+        }
+    }
+
+
+    class Queen extends Piece
+    {
         function canAttack($targetXCoord, $targetYCoord) {
             if ($this->xCoord == $targetXCoord) {
                 return true;
@@ -18,18 +29,18 @@
                 return true;
             }
         }
+    }
 
-        function slope($targetXCoord, $targetYCoord) {
-            $xSlope = $this->xCoord - $targetXCoord;
-            $ySlope = $this->yCoord - $targetYCoord;
-            $slope = abs($xSlope/$ySlope);
-            return $slope;
+
+    class Knight extends Piece
+    {
+        function canAttack($targetXCoord, $targetYCoord) {
+            if (abs($this->xCoord - $targetXCoord) == 2 || abs($this->yCoord - $targetYCoord) == 2) {
+                if (abs($this->xCoord - $targetXCoord) == 1 || abs($this->yCoord - $targetYCoord) == 1) {
+                    return true;
+                }
+            }
         }
-
-
-
-
-
     }
 
 ?>

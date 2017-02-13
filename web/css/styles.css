@@ -1,0 +1,28 @@
+.row, .col-xs-1 {
+    height: 100px;
+}
+
+.row {
+    width: 830px;
+}
+
+.col-xs-1 {
+    width: 100px;
+    border: 2px solid black;
+}
+
+.row:nth-child(odd) div:nth-child(odd) {
+    background-color: darkgrey;
+}
+
+.row:nth-child(even) div:nth-child(even) {
+    background-color: darkgrey;
+}
+
+.queen-space {
+    background-color: red !important;
+}
+
+.target-space {
+    background-color: green !important;
+}

@@ -2,23 +2,27 @@
 <html>
     <head>
         <meta charset="utf-8">
+        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="css/styles.css" rel="stylesheet" type="text/css">
+        <script src="js/jquery-3.1.1.js"></script>
+        <script src="js/scripts.js"></script>
         <title>Queen</title>
     </head>
     <body>
-        <form class="" action="/" method="post">
-            <label for="queenXCoord">Queen X Coordinate</label>
-            <input type="number" name="queenXCoordinate" id="queenXCoordinate" value="">
-            <label for="queenYCoord">Queen Y Coordinate</label>
-            <input type="number" name="queenYCoordinate" id="queenYCoordinate" value="">
-            <label for="targetXCoord">Target X Coordinate</label>
-            <input type="number" name="targetXCoordinate" id="targetXCoordinate" value="">
-            <label for="targetYCoord">Target Y Coordinate</label>
-            <input type="number" name="targetYCoordinate" id="targetYCoordinate" value="">
-            <button type="submit" name="button">Tell Me</button>
-        </form>
+        <div class="container">
+            {% for i in 1..8 %}
+            <div id="row{{i}}"class="row">
+                {% for j in 1..8%}
+                <div id="col{{j}}" class="col-xs-1">
+                </div>
+                {% endfor %}
+            </div>
+            {% endfor %}
 
-        <div class="result">
-            {% block result %} {% endblock%}
+            <button id="move-queen-button">Move Queen</button>
+            <button id="move-knight-button">Move Knight</button>
+            <div class="result">
+            </div>
         </div>
     </body>
 </html>

@@ -11,14 +11,16 @@ $app->get('/', function() use ($app) {
 });
 
 $app->post('/', function() use ($app) {
-    $currentQueen = new Queen($_POST['queenXCoordinate'], $_POST['queenYCoordinate']);
-    $result = $currentQueen->canAttack($_POST['targetXCoordinate'], $_POST['targetYCoordinate']);
+    $currentType = $_POST['subject'];
+    $currentPiece;
+    if ($currentType == 'queen') {
+        $currentPiece = new Queen($_POST["pieceLoc"][0], $_POST['pieceLoc'][1]);
+    } elseif ($currentType == 'knight') {
+        $currentPiece = new Knight($_POST["pieceLoc"][0], $_POST['pieceLoc'][1]);
+    }
+    $result = $currentPiece->canAttack($_POST['targetLoc'][0], $_POST['targetLoc'][1]);
     return $app['twig']->render("result.html.twig", ['result' => $result]);
 });
 
 return $app;
-
-
-
-
 ?>
