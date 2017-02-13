@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Queen</title>
+    </head>
+    <body>
+        <form class="" action="/" method="post">
+            <label for="queenXCoord">Queen X Coordinate</label>
+            <input type="number" name="queenXCoordinate" id="queenXCoordinate" value="">
+            <label for="queenYCoord">Queen Y Coordinate</label>
+            <input type="number" name="queenYCoordinate" id="queenYCoordinate" value="">
+            <label for="targetXCoord">Target X Coordinate</label>
+            <input type="number" name="targetXCoordinate" id="targetXCoordinate" value="">
+            <label for="targetYCoord">Target Y Coordinate</label>
+            <input type="number" name="targetYCoordinate" id="targetYCoordinate" value="">
+            <button type="submit" name="button">Tell Me</button>
+        </form>
+
+        <div class="result">
+            {% block result %} {% endblock%}
+        </div>
+    </body>
+</html>
