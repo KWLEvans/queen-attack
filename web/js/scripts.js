@@ -36,7 +36,7 @@ $(function() {
                     $('div').removeClass('black-'+currentType);
                     $(currentPiece).addClass('black-'+currentType);
                     $(currentPiece).click(function() {
-                        queenClick(this);
+                        movePiece(this);
                     })
                     confirm = false;
                 }
@@ -44,10 +44,7 @@ $(function() {
         }
     });
 
-    function queenClick(square) {
-        $("div").removeClass("piece-space target-space");
-        subject = "queen";
-        currentType = "queen";
+    function movePiece(square) {
         var xIndex = parseInt(removeLetters($(square).attr("id")));
         var yIndex = parseInt(removeLetters($(square).parent().attr("id")));
         console.log(xIndex,yIndex);
@@ -60,14 +57,16 @@ $(function() {
         }
     }
 
-    $(".black-queen").click(function() {
-        queenClick(this);
-    });
+    // $(".black-queen").click(function() {
+    //     subject = "queen";
+    //     currentType = "queen";
+    //     movePiece(this);
+    // });
 
-    $("#move-knight-button").click(function() {
-        $("div").removeClass("piece-space target-space");
+    $(".black-knight").click(function() {
         subject = "knight";
-        confirm = false;
+        currentType = "knight";
+        movePiece(this);
     });
 
     $("#move-rook-button").click(function() {
