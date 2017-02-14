@@ -6,6 +6,10 @@
     width: 830px;
 }
 
+div {
+    background-size: 100px 100px;
+}
+
 .col-xs-1 {
     width: 100px;
     border: 2px solid black;
@@ -19,10 +23,49 @@
     background-color: darkgrey;
 }
 
-.queen-space {
+.piece-space {
     background-color: red !important;
 }
 
 .target-space {
     background-color: green !important;
+}
+
+.white-king {
+    background-image: url('/../img/whiteking.png');
+}
+
+.black-king {
+    background-image: url('/../img/blackking.png');
+}
+
+.white-queen {
+    background-image: url('/../img/whitequeen.png');
+}
+.black-queen {
+    background-image: url('/../img/blackqueen.png');
+}
+
+.white-knight {
+    background-image: url('/../img/whiteknight.png');
+}
+
+.black-knight {
+    background-image: url('/../img/blackknight.png');
+}
+
+.white-bishop {
+    background-image: url('/../img/whitebishop.png');
+}
+
+.black-bishop {
+    background-image: url('/../img/blackbishop.png');
+}
+
+.black-rook {
+    background-image: url('/../img/blackrook.jpg');
+}
+
+.white-rook {
+    background-image: url('/../img/whiterook.png');
 }

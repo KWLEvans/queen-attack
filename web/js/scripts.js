@@ -1,36 +1,92 @@
+function setBoard() {
+    var spaces = $('#row8').children().get();
+    console.log(spaces);
+    for (var i = 0; i < spaces.length; i++) {
+        if (i === 0 || i === 7) {
+            $(spaces[i]).addClass("black-rook");
+        } else if (i === 1 || i === 6) {
+            $(spaces[i]).addClass("black-knight");
+        } else if (i === 2 || i === 5) {
+            $(spaces[i]).addClass("black-bishop");
+        } else if (i === 3) {
+            $(spaces[i]).addClass("black-queen");
+        } else {
+            $(spaces[i]).addClass("black-king");
+        }
+    }
+}
+
+
+
+
 $(function() {
-    var subject = "queen";
+    setBoard();
+    var subject = "";
     var pieceLoc;
     var confirm = false;
+    var currentType;
     $(".row div").click(function() {
-        $("div").removeClass("target-space");
         var xIndex = parseInt(removeLetters($(this).attr("id")));
         var yIndex = parseInt(removeLetters($(this).parent().attr("id")));
-        if (!confirm) {
-            pieceLoc = [xIndex, yIndex];
-            $(this).addClass("queen-space");
-            confirm = true;
-        } else if (confirm) {
+        var currentPiece = this;
+        if (confirm) {
             var targetLoc = [xIndex, yIndex];
-            $(this).addClass("target-space");
             $.post("/", {pieceLoc: pieceLoc, targetLoc: targetLoc, subject: subject}, function(response) {
-                $(".result").html(response);
+                if (response) {
+                    $('div').removeClass('black-'+currentType);
+                    $(currentPiece).addClass('black-'+currentType);
+                    $(currentPiece).click(function() {
+                        queenClick(this);
+                    })
+                    confirm = false;
+                }
             });
         }
     });
 
-    $("#move-queen-button").click(function() {
-        $("div").removeClass("queen-space target-space");
+    function queenClick(square) {
+        $("div").removeClass("piece-space target-space");
         subject = "queen";
-        confirm = false;
+        currentType = "queen";
+        var xIndex = parseInt(removeLetters($(square).attr("id")));
+        var yIndex = parseInt(removeLetters($(square).parent().attr("id")));
+        console.log(xIndex,yIndex);
+        if (!confirm) {
+            pieceLoc = [xIndex, yIndex];
+            $(square).addClass("piece-space");
+            confirm = true;
+            console.log(pieceLoc);
+            $(square).off();
+        }
+    }
+
+    $(".black-queen").click(function() {
+        queenClick(this);
     });
 
     $("#move-knight-button").click(function() {
-        $("div").removeClass("queen-space target-space");
+        $("div").removeClass("piece-space target-space");
         subject = "knight";
         confirm = false;
     });
 
+    $("#move-rook-button").click(function() {
+        $("div").removeClass("piece-space target-space");
+        subject = "rook";
+        confirm = false;
+    });
+
+    $("#move-bishop-button").click(function() {
+        $("div").removeClass("piece-space target-space");
+        subject = "bishop";
+        confirm = false;
+    });
+
+    $("#move-king-button").click(function() {
+        $("div").removeClass("piece-space target-space");
+        subject = "king";
+        confirm = false;
+    });
 
     function removeLetters(index) {
         return index.slice(-1);

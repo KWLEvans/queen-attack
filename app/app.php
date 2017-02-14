@@ -17,9 +17,15 @@ $app->post('/', function() use ($app) {
         $currentPiece = new Queen($_POST["pieceLoc"][0], $_POST['pieceLoc'][1]);
     } elseif ($currentType == 'knight') {
         $currentPiece = new Knight($_POST["pieceLoc"][0], $_POST['pieceLoc'][1]);
+    } elseif ($currentType == 'rook') {
+        $currentPiece = new Rook($_POST["pieceLoc"][0], $_POST['pieceLoc'][1]);
+    } elseif ($currentType == 'bishop') {
+        $currentPiece = new Bishop($_POST["pieceLoc"][0], $_POST['pieceLoc'][1]);
+    } elseif ($currentType == 'king') {
+        $currentPiece = new King($_POST["pieceLoc"][0], $_POST['pieceLoc'][1]);
     }
     $result = $currentPiece->canAttack($_POST['targetLoc'][0], $_POST['targetLoc'][1]);
-    return $app['twig']->render("result.html.twig", ['result' => $result]);
+    return $result;
 });
 
 return $app;
